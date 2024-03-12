@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cors from 'cors';
 import { notFound, errorHandler } from './middleware/errorMiddlleware.js';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -18,6 +19,8 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+app.use(cors());
 
 app.use(express.json());
 
