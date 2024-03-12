@@ -8,7 +8,7 @@ export const listProducts = createAsyncThunk(
 
     try {
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `${process.env.REACT_APP_API_URL}/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
 
       return fulfillWithValue(data);
@@ -55,7 +55,9 @@ export const listProductDetails = createAsyncThunk(
   'product/listProductDetails',
   async (id, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/products/${id}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/products/${id}`
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -108,7 +110,10 @@ export const deleteProduct = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.delete(`/api/products/${id}`, config);
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/products/${id}`,
+        config
+      );
 
       dispatch(listProducts());
 
@@ -161,7 +166,11 @@ export const createProduct = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.post(`/api/products`, {}, config);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/products`,
+        {},
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -225,7 +234,7 @@ export const updateProduct = createAsyncThunk(
 
     try {
       const { data } = await axios.put(
-        `/api/products/${product._id}`,
+        `${process.env.REACT_APP_API_URL}/api/products/${product._id}`,
         product,
         config
       );
@@ -293,7 +302,7 @@ export const createProductReview = createAsyncThunk(
 
     try {
       const { data } = await axios.post(
-        `/api/products/${productId}/reviews`,
+        `${process.env.REACT_APP_API_URL}/api/products/${productId}/reviews`,
         review,
         config
       );
@@ -345,7 +354,9 @@ export const listTopProducts = createAsyncThunk(
   'products/listTopProducts',
   async (arg, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/products/top`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/products/top`
+      );
 
       return fulfillWithValue(data);
     } catch (error) {

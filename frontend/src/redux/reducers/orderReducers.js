@@ -16,7 +16,11 @@ export const createOrder = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.post(`/api/orders`, order, config);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/orders`,
+        order,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -69,7 +73,10 @@ export const getOrderDetails = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.get(`/api/orders/${id}`, config);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/orders/${id}`,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -131,7 +138,7 @@ export const payOrder = createAsyncThunk(
 
     try {
       const { data } = await axios.put(
-        `/api/orders/${id}/pay`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${id}/pay`,
         paymentResult,
         config
       );
@@ -196,7 +203,7 @@ export const deliverOrder = createAsyncThunk(
 
     try {
       const { data } = await axios.put(
-        `/api/orders/${order._id}/deliver`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${order._id}/deliver`,
         {},
         config
       );
@@ -258,7 +265,10 @@ export const listMyOrders = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.get(`/api/orders/myorders`, config);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/orders/myorders`,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -315,7 +325,10 @@ export const listOrders = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.get(`/api/orders`, config);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/orders`,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {

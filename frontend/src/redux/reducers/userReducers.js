@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
 
     try {
       const { data } = await axios.post(
-        '/api/users/login',
+        `${process.env.REACT_APP_API_URL}/api/users/login`,
         { email, password },
         config
       );
@@ -78,7 +78,7 @@ export const register = createAsyncThunk(
 
     try {
       const { data } = await axios.post(
-        '/api/users',
+        `${process.env.REACT_APP_API_URL}/api/users`,
         { name, email, password },
         config
       );
@@ -143,7 +143,10 @@ export const getUserDetails = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.get(`/api/users/${id}`, config);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/users/${id}`,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -203,7 +206,11 @@ export const updateUserProfile = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.put(`/api/users/profile`, user, config);
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/users/profile`,
+        user,
+        config
+      );
 
       dispatch(login.fulfilled(data));
 
@@ -268,7 +275,10 @@ export const listUsers = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.get(`/api/users`, config);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/users`,
+        config
+      );
 
       return fulfillWithValue(data);
     } catch (error) {
@@ -327,7 +337,10 @@ export const deleteUser = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.delete(`/api/users/${id}`, config);
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/users/${id}`,
+        config
+      );
 
       dispatch(listUsers());
 
@@ -381,7 +394,11 @@ export const updateUser = createAsyncThunk(
     };
 
     try {
-      const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/users/${user._id}`,
+        user,
+        config
+      );
 
       dispatch(getUserDetails(data._id));
 
