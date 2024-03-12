@@ -20,7 +20,15 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://proshop-main.vercel.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+  exposedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
