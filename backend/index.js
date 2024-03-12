@@ -9,6 +9,7 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import { corsConfigs } from './config/corsConfigs.js';
 
 dotenv.config();
 
@@ -20,15 +21,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-const corsOptions = {
-  origin: 'https://proshop-main.vercel.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  exposedHeaders: ['Content-Type'],
-};
-
-app.use(cors(corsOptions));
+app.use(cors(corsConfigs));
 
 app.use(express.json());
 
