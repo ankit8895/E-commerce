@@ -1,14 +1,13 @@
-import path from 'path';
-import express from 'express';
-import dotenv from 'dotenv';
-import morgan from 'morgan';
-import cors from 'cors';
-import { notFound, errorHandler } from './middleware/errorMiddlleware.js';
-import connectDB from './config/db.js';
-import productRoutes from './routes/productRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import orderRoutes from './routes/orderRoutes.js';
-import uploadRoutes from './routes/uploadRoutes.js';
+const path = require('path');
+const express = require('express');
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+const { notFound, errorHandler } = require('./middleware/errorMiddlleware.js');
+const connectDB = require('./config/db.js');
+const productRoutes = require('./routes/productRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
+const orderRoutes = require('./routes/orderRoutes.js');
+const uploadRoutes = require('./routes/uploadRoutes.js');
 
 dotenv.config();
 
@@ -43,7 +42,6 @@ app.get('/api/config/googlepay', (req, res) =>
   })
 );
 
-const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.get('/', (req, res) => {
